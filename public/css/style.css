@@ -1,0 +1,170 @@
+@font-face {
+    font-family: myFirstFont;
+    src: url(font/cairo-v10-arabic-regular.ttf);
+}
+:root {
+    --first-color: #31365c;
+    --second-color: #3a416f;
+    --third-color: #5468ff;
+    --fourth-color: #49528d;
+    --fivth-color: #49528d;
+}
+body {
+    background-color: #ffffff;
+    font-family:myFirstFont;
+}
+.Text{
+    color: #0c63e4;
+    font-size: 17px;
+}
+.main {
+    background-color: #ffffff;
+    position: fixed;
+    z-index: 150;
+    width: 80%;
+    margin-top: 0%;
+}
+
+#New {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 10%;
+    border-radius: 40px;
+    background-color: #ffffff;
+    top: 90%;
+    left: 3%;
+    position: fixed;
+    z-index: 150;
+}
+
+#New a {
+    color:  var(--first-color);
+    margin-left: 10%;
+    margin-top: 12%;
+}
+
+#New a i {
+    color:  var(--third-color);
+    font-size: 30px;
+
+}
+
+.navbar a {
+    /*margin: 14px;*/
+    color: #f1f1f1;
+}
+
+nav {
+    background-color: var(--first-color);
+}
+
+li i .dropdown ::before {
+    transform: rotate(-135deg);
+    top: 1.2rem;
+}
+
+.Ul {
+    display: none;
+    font-size: 13px;
+}
+
+nav ul {
+    list-style: none;
+    position: relative;
+    display: inline-table;
+}
+
+nav ul li:hover > ul {
+    display: block;
+}
+
+ul li a {
+    color:#ffffff ;
+    margin: 10px;
+}
+div .dropdown a{
+    color:var(--fourth-color) ;
+}
+
+div .dropdown a:hover{
+    color:var(--third-color) ;
+}
+
+ul li a:hover {
+    color: #d6d6d6;
+}
+
+table tbody tr td a {
+    color: var(--fourth-color);
+}
+
+table tbody tr td a:hover {
+    color: var(--fourth-color);
+}
+
+.row #sidebarMenu {
+    background-color:var(--first-color);
+}
+
+.button:hover {
+    background-color: var(--fourth-color);
+}
+
+.card {
+    width: 82%;
+    margin-right: 35px;
+    margin-top: 10%;
+}
+
+.card .card-header {
+    background-color: #f9f9f9;
+}
+
+.card table {
+    background-color: #f9f9f9;
+    color: var(--fourth-color);
+}
+
+.btn {
+    color: var(--fourth-color);
+}
+
+.btn:hover {
+    color: #f1f1f1;
+    background-color: var(--second-color);
+}
+
+#btn{
+    color: var(--second-color);
+    background-color:#ffffff ;
+    height: 37px;
+    font-size: 15px;
+}
+#btn:hover{
+    color:#ffffff;
+    background-color:var(--second-color);
+    height: 37px;
+    font-size: 15px;
+}
+
+h1 {
+    color: var(--fourth-color);
+}
+
+h4 , h6{
+    color: var(--third-color);
+}
+
+table thead {
+    color: var(--third-color);
+}
+
+
+label , p {
+    color: var(--fivth-color);
+}
+
+
+a:hover{
+    text-decoration:none;
+}

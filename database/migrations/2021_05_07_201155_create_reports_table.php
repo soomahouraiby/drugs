@@ -15,7 +15,9 @@ class CreateReportsTable extends Migration
     {
         Schema::create('reports', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('app_user_id')->constrained('app_users')->onDelete('cascade')->onUpdate('cascade');
             $table->bigInteger('batch_number')->nullable();
+            $table->foreignId('types_report_id')->constrained('types_reports')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamp('date')->useCurrent();
             $table->longText('notes_user')->nullable();
             $table->string('district', 20)->nullable();
@@ -42,12 +44,6 @@ class CreateReportsTable extends Migration
             $table->smallInteger('age')->nullable()->length(3);
             $table->string('adjective',30)->nullable();
             $table->string('drug_photo',90)->nullable();
-
-
-            $table->foreignId('app_user_id')->constrained('app_users')->onDelete('cascade')->onUpdate('cascade')->nullable();
-            $table->foreignId('types_report_id')->constrained('types_reports')->onDelete('cascade')->onUpdate('cascade');
-
-
             $table->timestamps();
         });
     }

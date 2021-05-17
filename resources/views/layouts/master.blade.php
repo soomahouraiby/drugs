@@ -10,14 +10,14 @@
 
     <!--Bootstrap-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{{asset('../css/bootstrap-rtl.css')}}">
+    <link rel="stylesheet" href="{{asset('/css/bootstrap-rtl.css')}}">
     <!-- <link rel="stylesheet" href="../css/bootstrap.min.css"> -->
 
     <!--Fontawesome-->
-    <link rel="stylesheet" href="{{asset('../css/font/all.css')}}">
+    <link rel="stylesheet" href="{{asset('/css/font/all.css')}}">
 
     <!--Custom-->
-    <link rel="stylesheet" href="{{asset('../css/style.css')}}">
+    <link rel="stylesheet" href="{{asset('/css/style.css')}}">
 
 </head>
 
@@ -25,7 +25,7 @@
 
 
 {{--Navbar--}}
-@include('include/header')
+@include('include.header')
 
 
 

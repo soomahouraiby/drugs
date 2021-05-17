@@ -14,7 +14,6 @@ class CreateAppUsersTable extends Migration
     public function up()
     {
         Schema::create('app_users', function (Blueprint $table) {
-
             $table->id();
             $table->string('name',60);
             $table->string('email', 70)->unique();
@@ -25,9 +24,7 @@ class CreateAppUsersTable extends Migration
             $table->string('adjective', 30)->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-
             $table->rememberToken();
-
             $table->timestamps();
         });
     }

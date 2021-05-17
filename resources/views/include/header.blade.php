@@ -51,7 +51,7 @@
                 @auth
                 @if(auth()->user()->hasRole('مدير الصيدلة'))
                     <li class="dropdown dropdown-notification nav-item  dropdown-notifications" >
-                        <a class="nav-link nav-link-label" href="{{route('PM_newReports')}}" data-toggle="dropdown" >
+                        <a class="nav-link nav-link-label" href="#" data-toggle="dropdown" >
                             <i class="fa fa-bell" style="color: white"> </i>
                             <span
                                 class="badge badge-pill badge-default badge-danger badge-default badge-up badge-glow

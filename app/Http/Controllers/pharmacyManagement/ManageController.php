@@ -49,7 +49,7 @@ class ManageController extends Controller
             ->where('types_reports.name','!=','جودة')
             ->get();
 
-        return view('pharmacyManagement/newReports',compact('reports'));
+        return view('pharmacyManagement.newReports',compact('reports'));
     }
 
     //////////////// [ Show .. متابعة البلاغات الوارده ]  ////////////////
@@ -70,7 +70,7 @@ class ManageController extends Controller
             ->get();
 
 //        return $reports;
-        return view('pharmacyManagement/followReports',compact('reports'));
+        return view('pharmacyManagement.followReports',compact('reports'));
     }
 
 
@@ -97,7 +97,7 @@ class ManageController extends Controller
 
             ->where('reports.id','=', $report_no)->get();
 
-        return view('pharmacyManagement/follow',compact('reports'));
+        return view('pharmacyManagement.follow',compact('reports'));
     }
 
     //////////////// [ Follow .. إنهاء البلاغ ]  ////////////////
@@ -143,7 +143,7 @@ class ManageController extends Controller
         $shipment=Shipments::orderByDesc('shipment_no')->first('shipment_no');
 
 
-        return view('pharmacyManagement/addDrug',compact('agents','companies','materials','drug','shipment'));
+        return view('pharmacyManagement.addDrug',compact('agents','companies','materials','drug','shipment'));
     }
 
     //////////////// [ Drug ..  اضافة دواء ]  ////////////////
@@ -257,7 +257,7 @@ class ManageController extends Controller
                     'magnitudes.size', 'magnitudes.name')
                 ->where('batch_numbers.batch_num', '=', $batch->batch_number)->get();
         }
-        return view('pharmacyManagement/detailsDrug',compact('drugs'));
+        return view('pharmacyManagement.detailsDrug',compact('drugs'));
     }
 
     //////////////// [ Details ..  تفاصيل المتابعة ]  ////////////////
@@ -282,7 +282,7 @@ class ManageController extends Controller
            ->where('procedures.report_id','=',$report_no)->get();
 
 //       return $reports;
-        return view('pharmacyManagement/follow',compact('reports','procedures'));
+        return view('pharmacyManagement.follow',compact('reports','procedures'));
     }
 
 
@@ -377,7 +377,7 @@ class ManageController extends Controller
             ->where('types_reports.name','!=','جودة')
             ->get();
 
-        return view('pharmacyManagement/followReports',compact('reports'));
+        return view('pharmacyManagement.followReports',compact('reports'));
     }
 
     //////////////// [ Filter .. بلاغات تمت المتابعة ]  ////////////////
@@ -396,7 +396,7 @@ class ManageController extends Controller
             ->where('types_reports.name','!=','جودة')
             ->get();
 
-        return view('pharmacyManagement/followReports',compact('reports'));
+        return view('pharmacyManagement.followReports',compact('reports'));
     }
 
 }

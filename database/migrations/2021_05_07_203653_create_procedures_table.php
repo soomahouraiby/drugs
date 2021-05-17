@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateShipmentsTable extends Migration
+class CreateProceduresTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,14 @@ class CreateShipmentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('shipments', function (Blueprint $table) {
+        Schema::create('procedures', function (Blueprint $table) {
             $table->id();
-            $table->boolean('type')->default(0);
-            $table->boolean('exception')->default(0);
-
-
+            $table->foreignId('report_id')->constrained('reports')->onDelete('cascade')->onUpdate('cascade');
+            $table->longText('procedure')->nullable();
+            $table->timestamp('date')->useCurrent();
+            $table->longText('result')->nullable();
             $table->timestamps();
         });
-
     }
 
     /**
@@ -31,6 +30,6 @@ class CreateShipmentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('shipments');
+        Schema::dropIfExists('procedures');
     }
 }

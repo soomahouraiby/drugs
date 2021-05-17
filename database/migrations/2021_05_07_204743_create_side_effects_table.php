@@ -15,7 +15,7 @@ class CreateSideEffectsTable extends Migration
     {
         Schema::create('side_effects', function (Blueprint $table) {
             $table->id();
-
+            $table->foreignId('report_alert_drug_id')->constrained('report_alert_drugs')->onDelete('cascade')->onUpdate('cascade');
             $table->date('start_side_effect');
             $table->longText('severity');
             $table->boolean('sideshow_still');
@@ -25,12 +25,8 @@ class CreateSideEffectsTable extends Migration
             $table->string('doctor_name', 30);
             $table->string('doctor_hospital', 30);
             $table->integer('doctor_phone')->length(9);
-
-            $table->foreignId('report_alert_drug_id')->constrained('report_alert_drugs')->onDelete('cascade')->onUpdate('cascade');
-
             $table->timestamps();
         });
-
     }
 
     /**

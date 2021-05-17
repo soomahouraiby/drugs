@@ -213,7 +213,7 @@ class PHCManageController extends Controller
                 'companies.name as company_name','companies.country')
             ->where('commercial_drugs.id','=',$id)->get();
 
-        return view('pharmacovigilanceManagement/detailsDrug',compact('r'));
+        return view('pharmacovigilanceManagement.detailsDrug',compact('r'));
         //return response($r) ;
 
     }
@@ -239,7 +239,7 @@ class PHCManageController extends Controller
             }
         }
 
-        return view('pharmacovigilanceManagement/followReports',compact('reports'));
+        return view('pharmacovigilanceManagement.followReports',compact('reports'));
     }
     //عشان اللفلترة حق قيد المتابعة
     public function followingReports(){
@@ -261,7 +261,7 @@ class PHCManageController extends Controller
                 $report->state = $report->state == 2 ? ' تم الانهاء' : 'قيد المتابعة';
             }
         }
-        return view('pharmacovigilanceManagement/followReports',compact('reports'));
+        return view('pharmacovigilanceManagement.followReports',compact('reports'));
     }
     //عشان اللفلترة حق تم الانهاء
     public function doneReports(){
@@ -283,7 +283,7 @@ class PHCManageController extends Controller
                 $report->state = $report->state == 2 ? ' تم الانهاء' : 'قيد المتابعة';
             }
         }
-        return view('pharmacovigilanceManagement/followReports',compact('reports'));
+        return view('pharmacovigilanceManagement.followReports',compact('reports'));
     }
 
 
@@ -311,13 +311,13 @@ class PHCManageController extends Controller
         }
 
 
-        return view('pharmacovigilanceManagement/followedUp',compact('report','drug'));
+        return view('pharmacovigilanceManagement.followedUp',compact('report','drug'));
     }
 
 //عشان اضافة اجراء على البلاغ
     public function createProcedure($id){
         $reports = DB::table('report_alert_drugs')->find($id);
-        return view('pharmacovigilanceManagement/doneReports',compact('reports'));
+        return view('pharmacovigilanceManagement.doneReports',compact('reports'));
     }
     public function store($id,Request $request)
     {
@@ -345,7 +345,7 @@ class PHCManageController extends Controller
             }
         }
 
-        return view('pharmacovigilanceManagement/followReports',compact('reports'))
+        return view('pharmacovigilanceManagement.followReports',compact('reports'))
             ->with(['success'=> 'تم الانهاء بنجاح ']);
 
     }

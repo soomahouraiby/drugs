@@ -59,6 +59,7 @@ class OPManageController extends Controller
                 'reports.date', 'reports.transfer_date','reports.transfer_party','reports.transfer_party',
                 'reports.report_statuses' , 'types_reports.name as type_report','reports.opmanage_notes')
 
+            ->where('state','!=',0)
             ->where('report_statuses','!=',null)
             ->where('transfer_party','!=',null)
             ->where('types_reports.name','!=','اعراض جانبية')
@@ -76,7 +77,7 @@ class OPManageController extends Controller
 //            ->where('type_report','!=','اعراض جانبية')
 //            ->where('type_report','!=','جودة')
 //            ->get();
-        return view('operationsManagement/followReports',compact('reports'));
+        return view('operationsManagement.followReports',compact('reports'));
     }
 
 
@@ -114,7 +115,7 @@ class OPManageController extends Controller
 
     //////////////// [ Add report .. إضافة بلاغ ]  ////////////////
     public function addReport(){
-        return view('operationsManagement/addReport');
+        return view('operationsManagement.addReport');
     }
     public function selectBNumber(Request $request){
         $batch_no = $request->input('batch_num');
@@ -123,7 +124,7 @@ class OPManageController extends Controller
             ->select('commercial_drugs.name','commercial_drugs.id as drug_no','batch_numbers.drug_drawn')
             ->where('batch_num','=', $batch_no)->get();
 
-        return view('operationsManagement/addReport',compact('drug'));
+        return view('operationsManagement.addReport',compact('drug'));
     }
     public function store(Request  $request): \Illuminate\Http\RedirectResponse
     {
@@ -172,7 +173,7 @@ class OPManageController extends Controller
             ->join('types_reports', 'reports.types_report_id', '=', 'types_reports.id')
             ->join('app_users', 'reports.app_user_id', '=', 'app_users.id')
 
-            ->select('reports.id','reports.state','reports.drug_picture','reports.notes_user', 'reports.date',
+            ->select('reports.id','reports.state','reports.drug_photo','reports.notes_user', 'reports.date',
                 'reports.drug_price','reports.commercial_name','reports.company_name','reports.agent_name',
                 'reports.site_dec','reports.neig_name','reports.pharmacy_title','reports.street_name',
                 'app_users.name as name_user', 'app_users.phone as phone_user', 'app_users.adjective'
@@ -227,7 +228,7 @@ class OPManageController extends Controller
             ->where('procedures.report_id','=',$report_no)->get();
 
 //       return $reports;
-        return view('operationsManagement/followedUp',compact('reports','procedures'));
+        return view('operationsManagement.followedUp',compact('reports','procedures'));
     }
 
     //////////////// [ Details ..  الدواء ]  ////////////////
@@ -257,7 +258,7 @@ class OPManageController extends Controller
                     'magnitudes.size', 'magnitudes.name')
                 ->where('batch_numbers.batch_num', '=', $batch->batch_number)->get();
         }
-        return view('operationsManagement/detailsDrug',compact('drugs'));
+        return view('operationsManagement.detailsDrug',compact('drugs'));
     }
 
 
@@ -353,7 +354,7 @@ class OPManageController extends Controller
 //            ->where('type_report','!=','جودة')
 //            ->get();
 
-        return view('operationsManagement/followReports',compact('reports'));
+        return view('operationsManagement.followReports',compact('reports'));
     }
 
     //////////////// [ Filter .. قيد المتابع ]  ////////////////
@@ -383,7 +384,7 @@ class OPManageController extends Controller
 //            ->where('type_report','!=','جودة')
 //            ->get();
 
-        return view('operationsManagement/followReports',compact('reports'));
+        return view('operationsManagement.followReports',compact('reports'));
     }
 
     //////////////// [ Filter .. تمت المتابعة ]  ////////////////
@@ -413,7 +414,7 @@ class OPManageController extends Controller
 //            ->where('type_report','!=','جودة')
 //            ->get();
 
-        return view('operationsManagement/followReports',compact('reports'));
+        return view('operationsManagement.followReports',compact('reports'));
     }
 
     //////////////// [ Filter .. تم الانهاء ]  ////////////////
@@ -430,7 +431,7 @@ class OPManageController extends Controller
             ->where('types_reports.name','!=','اعراض جانبية')
             ->where('types_reports.name','!=','جودة')
             ->get();
-        return view('operationsManagement/followReports',compact('reports'));
+        return view('operationsManagement.followReports',compact('reports'));
     }
 
 }

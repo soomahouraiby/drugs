@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDiseasesAppUsersTable extends Migration
+class CreateDiseasesCommercialsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,13 @@ class CreateDiseasesAppUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('diseases_app_users', function (Blueprint $table) {
-
+        Schema::create('diseases_commercials', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('app_user_id')->constrained('app_users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('commercial_id')->constrained('commercial_drugs')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('diseases_id')->constrained('diseases')->onDelete('cascade')->onUpdate('cascade');
-            $table->unique(['app_user_id', 'diseases_id']);
+            $table->unique(['commercial_id', 'diseases_id']);
             $table->timestamps();
         });
-
     }
 
     /**
@@ -31,6 +29,6 @@ class CreateDiseasesAppUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('diseases_app_users');
+        Schema::dropIfExists('diseases_commercials');
     }
 }

@@ -42,7 +42,7 @@ class UsersController extends Controller
                 'users.id','roles.name as role_name')->get();
 
 
-        return view('Management/users',compact('users'));
+        return view('Management.users',compact('users'));
 
     }//end index
 
@@ -50,7 +50,7 @@ class UsersController extends Controller
 
         $users = User::all()->find($id);
 
-        return view('Management/editUser',compact('users'));
+        return view('Management.editUser',compact('users'));
 
     }//end of edit
 
@@ -86,7 +86,7 @@ class UsersController extends Controller
     }//end of update
 
     public function add(){
-       return view('Management/addUser');
+       return view('Management.addUser');
 
     }//end of add
 

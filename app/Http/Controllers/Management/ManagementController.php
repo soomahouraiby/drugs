@@ -43,7 +43,7 @@ class ManagementController extends Controller
             ->where('types_reports.name','!=','اعراض جانبية')
             ->where('types_reports.name','!=','جودة')
             ->get();
-        return view('Management/showReports',compact('reports'));
+        return view('Management.showReports',compact('reports'));
     }
 
 
@@ -70,7 +70,7 @@ class ManagementController extends Controller
             ->select('procedures.report_id','procedures.result','procedures.procedure','procedures.date')
             ->where('report_id','=',$report_no)->get();
 
-        return view('Management/report',compact('reports','procedures'));
+        return view('Management.report',compact('reports','procedures'));
     }
 
     //////////////// [ Details ..  بلاغ وارد ]  ////////////////
@@ -145,7 +145,7 @@ class ManagementController extends Controller
                     'magnitudes.size', 'magnitudes.name')
                 ->where('batch_numbers.batch_num', '=', $batch->batch_number)->get();
         }
-        return view('Management/detailsDrug',compact('drugs'));
+        return view('Management.detailsDrug',compact('drugs'));
     }
 
 
@@ -162,7 +162,7 @@ class ManagementController extends Controller
             ->where('types_reports.name','!=','اعراض جانبية')
             ->where('types_reports.name','!=','جودة')
             ->get();
-        return view('Management/showReports',compact('reports'));
+        return view('Management.showReports',compact('reports'));
     }
 
     //////////////// [ Filter .. بلاغات محول للمتابعة ]  ////////////////
@@ -176,7 +176,7 @@ class ManagementController extends Controller
             ->where('types_reports.name','!=','اعراض جانبية')
             ->where('types_reports.name','!=','جودة')
             ->get();
-        return view('Management/showReports',compact('reports'));
+        return view('Management.showReports',compact('reports'));
     }
 
     //////////////// [ Filter .. بلاغات قيد المتابعة ]  ////////////////
@@ -191,7 +191,7 @@ class ManagementController extends Controller
             ->where('types_reports.name','!=','جودة')
             ->get();
 
-        return view('Management/showReports',compact('reports'));
+        return view('Management.showReports',compact('reports'));
     }
 
     //////////////// [ Filter .. بلاغات تمت المتابعة ]  ////////////////
@@ -205,7 +205,7 @@ class ManagementController extends Controller
             ->where('types_reports.name','!=','اعراض جانبية')
             ->where('types_reports.name','!=','جودة')
             ->get();
-        return view('Management/showReports',compact('reports'));
+        return view('Management.showReports',compact('reports'));
     }
 
     //////////////// [ Filter .. بلاغات تم الانهاء ]  ////////////////
@@ -219,7 +219,7 @@ class ManagementController extends Controller
             ->where('types_reports.name','!=','اعراض جانبية')
             ->where('types_reports.name','!=','جودة')
             ->get();
-        return view('Management/showReports',compact('reports'));
+        return view('Management.showReports',compact('reports'));
     }
 
 }

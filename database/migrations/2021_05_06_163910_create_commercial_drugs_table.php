@@ -24,7 +24,6 @@ class CreateCommercialDrugsTable extends Migration
             $table->longText('how_use');
             $table->longText('side_effects');
             $table->smallInteger('drug_form')->length(3);
-
             $table->foreignId('company_id')->constrained('companies')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('agent_id')->constrained('agents')->onDelete('cascade')->onUpdate('cascade');
 

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMagnitudesTable extends Migration
+class CreateEffectiveMaterialsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class CreateMagnitudesTable extends Migration
      */
     public function up()
     {
-        Schema::create('magnitudes', function (Blueprint $table) {
-
+        Schema::create('effective_materials', function (Blueprint $table) {
             $table->id();
-            $table->string('name',10);
-            $table->decimal('size', 10, 10);
-
+            $table->string('name',50);
+            $table->longText('indications_use');
             $table->timestamps();
         });
     }
@@ -30,6 +28,6 @@ class CreateMagnitudesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('magnitudes');
+        Schema::dropIfExists('effective_materials');
     }
 }

@@ -42,7 +42,8 @@
                                     </div>
                                 </div>
                                 <div class="form-group raw mt-4 " style="display: flex; flex-wrap: wrap; margin-left: -12px; margin-right: -12px;">
-                                    <button id="query" class="btn btn-primary " type="submit" style="color: white;background-color: #0F122D">
+                                    <button id="query" class="btn btn-primary " type="submit" style="color: white;background-color: #0F122D;
+                                                            ">
                                         تحقق
                                     </button>
                                 </div>
@@ -82,7 +83,10 @@
                                  <div class="form-group raw mt-4 mr-3" style="display: flex; flex-wrap: wrap;">
                                      <label class="col-form-label text-sm-right mt-2 ml-0"> النوع : </label>
                                      <div class=" mt-2 ml-4  ">
-                                         <input type="text" class="form-control  " placeholder="النوع " name="sex">
+                                         <input type="radio" id="male" name="sex" value="0">
+                                         <label for="male">ذكر</label><br>
+                                         <input type="radio" id="female" name="sex" value="1">
+                                         <label for="female">انثى</label><br>
                                      </div>
                                  </div>
                              </div>
@@ -96,9 +100,15 @@
                             </div>
                             <div class="row ">
                                 <div class="form-group raw mt-4 mr-3" style="display: flex; flex-wrap: wrap; margin-left: -12px; margin-right: -12px;">
+                                    <label class="col-form-label text-sm-right mt-2">  رقم التشغيلة: </label>
+                                    <div class="mt-2 ml-4">
+                                    <input type="text" class="form-control"  name="batch_number">
+                                    </div>
+                                    <br><br>
+                                </div>
+                                <div class="form-group raw mt-4 mr-3" style="display: flex; flex-wrap: wrap; margin-left: -12px; margin-right: -12px;">
                                     <label class="col-form-label text-sm-right mt-2">  الاسم التجاري للدواء: </label>
                                     <div class="mt-2 ml-4">
-                                        <input name="drug_no" type="hidden" value="0">
                                         <input type="text" class="form-control" placeholder="اسم الدواء" name="commercial_name">
                                     </div>
                                     <label class="col-form-label text-sm-right mt-2 "> الاسم العلمي : </label>
@@ -203,7 +213,10 @@
                                         </div>
                                         <label class="col-form-label text-sm-right mt-2 ml-0"> النوع : </label>
                                         <div class=" mt-2 ml-4  ">
-                                            <input type="text" class="form-control  " placeholder="النوع " name="sex">
+                                            <input type="radio" id="male" name="sex" value="0">
+                                            <label for="male">ذكر</label><br>
+                                            <input type="radio" id="female" name="sex" value="1">
+                                            <label for="female">انثى</label><br>
                                         </div>
                                     </div>
                                 </div>
@@ -217,12 +230,18 @@
                                 </div>
                                 <div class="row ">
                                     <div class="form-group raw mt-4 mr-3" style="display: flex; flex-wrap: wrap; margin-left: -12px; margin-right: -12px;">
+                                        @if(isset($drug))
+                                            @foreach($drug as $drugs)
+                                                <input type="hidden" class="form-control"  name="batch_number"
+                                                       value="{{$drugs->batch_num}}">
+                                            @endforeach
+                                        @endif
                                         <label class="col-form-label text-sm-right mt-2">  اسم الدواء : </label>
                                         <div class="mt-2 ml-4">
                                             @if(isset($drug))
                                                 @foreach($drug as $drugs)
-                                                    <input type="text" class="form-control" placeholder="{{$drugs->drug_name}}  " name="drug_name"
-                                                           value="{{$drugs->drug_name}}">
+                                                    <input type="text" class="form-control" placeholder="{{$drugs->name}}  " name="drug_name"
+                                                           value="{{$drugs->name}}">
                                                 @endforeach
                                             @endif
                                         </div>
@@ -310,7 +329,10 @@
                                                     </div>
                                                     <label class="col-form-label text-sm-right mt-2 ml-0"> النوع : </label>
                                                     <div class=" mt-2 ml-4  ">
-                                                        <input type="text" class="form-control  " placeholder="النوع " name="sex">
+                                                        <input type="radio" id="male" name="sex" value="0">
+                                                        <label for="male">ذكر</label><br>
+                                                        <input type="radio" id="female" name="sex" value="1">
+                                                        <label for="female">انثى</label><br>
                                                     </div>
                                                 </div>
                                             </div>
@@ -324,12 +346,18 @@
                                             </div>
                                             <div class="row ">
                                                 <div class="form-group raw mt-4 mr-3" style="display: flex; flex-wrap: wrap; margin-left: -12px; margin-right: -12px;">
+                                                    @if(isset($drug))
+                                                        @foreach($drug as $drugs)
+                                                            <input type="hidden" class="form-control"  name="batch_number"
+                                                            value="{{$drugs->batch_num}}">
+                                                        @endforeach
+                                                    @endif
                                                     <label class="col-form-label text-sm-right mt-2">  اسم الدواء : </label>
                                                     <div class="mt-2 ml-4">
                                                         @if(isset($drug))
                                                             @foreach($drug as $drugs)
-                                                                <input type="text" class="form-control" placeholder="{{$drugs->drug_name}}  " name="drug_name"
-                                                                       value="{{$drugs->drug_name}}">
+                                                                <input type="text" class="form-control" placeholder="{{$drugs->name}}  " name="drug_name"
+                                                                       value="{{$drugs->name}}">
                                                             @endforeach
                                                         @endif
                                                     </div>

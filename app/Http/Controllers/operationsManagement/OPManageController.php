@@ -121,7 +121,8 @@ class OPManageController extends Controller
         $batch_no = $request->input('batch_num');
         $drug=DB::table('batch_numbers')
             ->join('commercial_drugs', 'batch_numbers.commercial_id', '=', 'commercial_drugs.id')
-            ->select('commercial_drugs.name','commercial_drugs.id as drug_no','batch_numbers.drug_drawn')
+            ->select('commercial_drugs.name','commercial_drugs.id as drug_no'
+                ,'batch_numbers.drug_drawn','batch_numbers.batch_num')
             ->where('batch_num','=', $batch_no)->get();
 
         return view('operationsManagement.addReport',compact('drug'));
@@ -141,7 +142,7 @@ class OPManageController extends Controller
             'material_name' =>  $request->input('material_name'),
             'company_name' => $request->input('company_name'),
             'agent_name' => $request->input('agent_name'),
-            'batch_number' => $request->input('batch_num'),
+            'batch_number' => $request->input('batch_number'),
             'drug_price' => $request->input('drug_price'),
             'district' => $request->input('district'),
             'notes_user' =>$request->input('notes_user'),

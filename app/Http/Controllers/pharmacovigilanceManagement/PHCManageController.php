@@ -270,10 +270,6 @@ class PHCManageController extends Controller
     }
 
 //عشان اضافة اجراء على البلاغ
-    public function createProcedure($id){
-        $reports = DB::table('report_alert_drugs')->find($id);
-        return view('pharmacovigilanceManagement.doneReports',compact('reports'));
-    }
     public function store($id,Request $request)
     {
 //        $reports = DB::table('report_alert_drugs')->find($id);

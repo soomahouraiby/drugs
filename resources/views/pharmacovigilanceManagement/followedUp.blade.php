@@ -30,31 +30,6 @@
                 <form>
                     @if(isset($report))
                         @foreach($report as $reports)
-                            @if($reports -> type_report=='اعراض جانبية')
-                            <div class="form-group raw mt-2 " style="display: flex; flex-wrap: wrap;  ">
-                                <label class="col-form-label Text ml-3 mr-4 ">اسم المبلغ : </label>
-                                <label class="col-form-label  ml-2 mr-4  ">{{$reports -> name}}  </label>
-                                <label class="col-form-label Text ml-5 mr-4 ">رقم الهاتف : </label>
-                                <label class="col-form-label  ml-2 mr-4  ">{{$reports -> phone}}  </label>
-                                <label class="col-form-label Text ml-5 mr-4 ">تاريخ البلاغ : </label>
-                                <label class="col-form-label  ml-2 mr-4  ">{{$reports -> date_report}}  </label>
-                            </div>
-                            <div class="form-group raw mt-4  border-bottom " style="display: flex; flex-wrap: wrap; ">
-                                <label class="col-form-label  Text ml-3 mr-4 ">نوع البلاغ : </label>
-                                <label class="col-form-label  ml-2 mr-4 ">{{$reports -> type_report}}  </label>
-                                <label class="col-form-label  Text ml-3 mr-4 ">اسم المنشأه : </label>
-                                <label class="col-form-label  ml-2 mr-4 ">{{$reports -> facility_name}}  </label>
-                                @if(isset($drug))
-                                    @foreach($drug as $drugs)
-                                <label class="col-form-label Text  ml-5 mr-4 ">اسم الدواء : </label>
-                                <label class="col-form-label ml-2 mr-4 mb-3  ">{{$drugs -> drug_name}}  </label>
-                                    @endforeach
-                                @endif
-                            </div>
-                            <div class="form-group raw mt-4  ">
-                                <a class="text-center col-form-label mb-3"  href="{{route('PHC_detailsEffectReport',$reports -> report_no)}}" style="margin-right: 45%"> تفاصيل البلاغ</a>
-                            </div>
-                            @elseif($reports -> type_report=='جودة')
                                 <div class="form-group raw mt-2 " style="display: flex; flex-wrap: wrap;  ">
                                     <label class="col-form-label Text ml-3 mr-4 ">اسم المبلغ : </label>
                                     <label class="col-form-label  ml-2 mr-4  ">{{$reports -> name}}  </label>
@@ -78,7 +53,6 @@
                                 <div class="form-group raw mt-4  ">
                                     <a class="text-center col-form-label mb-3"  href="{{route('PHC_detailsReport',$reports -> report_no)}}" style="margin-right: 45%"> تفاصيل البلاغ</a>
                                 </div>
-                            @endif
                         @endforeach
                     @endif
                 </form>
@@ -89,13 +63,25 @@
         @if(isset($report))
             @foreach($report as $reports)
                 @if($reports -> state == 1)
-                <div class="row pb-5 ml-20 mt-10 mb-10">
-                    <div class="col-lg">
-                        <button class="btn " type="submit" style="margin-right:70%; width: 10%; background-color: #0F122D; color:#ffffff">
-                            <a  href="{{route('PHC_createProcedure',$reports -> report_no)}}">اضافة اجراء </a></button>
-
-                    </div>
-                </div>
+                        <button class="btn float-right mb-5 button" data-toggle="modal" data-target="#myModal" style="background-color: #021a3e ; color: #ffffff;margin-left:30%;margin-top: 1% " >اضافة اجراء </button>
+                        <div class="modal fade " id="myModal">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4>اضافة اجراء</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form method="POST" action="{{route('PHC_store',$reports -> report_no)}}">
+                                            @csrf
+                                            <div class=" mt-2 col-lg-12 ">
+                                                <textarea class="form-control" name="notes"  rows="3" ></textarea>
+                                            </div>
+                                            <button class="btn mt-3 float-right "  type="submit"  style="background-color: #02142f ; color: #ffffff ">حفظ</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                 @elseif($reports->state==2)
                     <div class="card shadow mt-5" >
                         <div class="card-header " style="background-color: #F9F9F9;">

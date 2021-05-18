@@ -86,7 +86,9 @@ class OPManageController extends Controller
     //////////////// [ Transfer .. تحويل البلاغ الوارد ]  ////////////////
     public function transferReports($report_no,Request $request)
     {
-        $reports = DB::table('reports')->select('reports.transfer_party')
+        $reports = DB::table('reports')
+            ->join('app_users', 'reports.app_user_id', '=', 'app_users.id')
+            ->select('reports.transfer_party','app_users.name','reports.notes_user')
             ->where('reports.id', '=', $report_no)
 
             ->update(['transfer_party' => 'ادارة الصيدلة',
@@ -94,8 +96,8 @@ class OPManageController extends Controller
                 ,'state'=>1,'reports.report_statuses'=>'محول للمتابعة']);
 
         $data =[
-            'id' => 'aa',
-            'state' =>'g' ,
+            'name' =>'app_users.name',
+            'notes_user' =>'notes_user',
         ];
         event(new NewNotification($data));
         return redirect()->back();
@@ -156,8 +158,8 @@ class OPManageController extends Controller
             'report_statuses'=>'محول للمتابعة'
         ]);
         $data =[
-            'id' => 'aa',
-            'state' =>'g' ,
+            'amount_name' =>   $request->input('amount_name'),
+            'notes_user' =>$request->input('notes_user'),
         ];
         event(new NewNotification($data));
         return redirect()->back()->with(['success' => 'تم اضافه البلاغ بنجاح ']);

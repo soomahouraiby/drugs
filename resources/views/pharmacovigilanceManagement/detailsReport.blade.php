@@ -184,7 +184,117 @@
                 </div>
             </div>
 
+            @if(isset($report))
+                @foreach($report as $reports)
+                    @if($reports->type_report=='اعراض جانبية')
+            {{--//////////////////////////////////////////////////////--}}
+            {{--              بيانات الادوية الاخرى                     --}}
+            {{--//////////////////////////////////////////////////////--}}
+            <div class="card shadow mb-0 pb-0" >
+                <div class="card-header " style="background-color: #F9F9F9;">
+                    <div class="row m-2 ">
+                        <h4>بيانات الادوية الاخرى المستخدمة حاليا وكذلك المستخدمة قبل شهر من ظهور العرض</h4>
+                    </div>
+                </div>
+                <div class="card-body position-relative mb-0 pb-0" style="background-color: #F9F9F9;">
+                    <table class="table table-striped ">
+                        <thead >
+                        <tr>
+                            <th>اسم الدواء</th>
+                            <th>الجرعة</th>
+                            <th>تاريخ بدء الاستخدام</th>
+                            <th>تاريخ انهاء الاستخدام</th>
+                            <th>الغرض من الاستخدام</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @if(isset($o_drug))
+                            @foreach($o_drug as $o_drugs)
+                                <tr class="reportRow">
+                                    <td>{{$o_drugs -> name}}</td>
+                                    <td>{{$o_drugs -> dosage}}</td>
+                                    <td>{{$o_drugs -> start_use_date}}</td>
+                                    <td>{{$o_drugs -> end_use_date}}</td>
+                                    <td>{{$o_drugs -> purpose_use}}</td>
+                                </tr>
+                            @endforeach
+                        @endif
+                        </tbody>
+                    </table>
+                </div>
+            </div>
 
+            {{--//////////////////////////////////////////////////////--}}
+            {{--              بيانات العرض الجانبي                     --}}
+            {{--//////////////////////////////////////////////////////--}}
+            <div class="card shadow mb-0 pb-0" >
+                <div class="card-header " style="background-color: #F9F9F9;">
+                    <div class="row m-2 ">
+                        <h4>بيانات العرض الجانبي</h4>
+                    </div>
+                </div>
+                <div class="card-body position-relative mb-0 pb-0" style="background-color: #F9F9F9;">
+                    <form>
+                        @if(isset($o_drug))
+                            @foreach($o_drug as $o_drugs)
+                                <div class="form-group raw mt-4  border-bottom " style="display: flex; flex-wrap: wrap; ">
+                                    <label class="col-form-label Text  ml-3 mr-4 ">تاريخ بدء ظهور العرض : </label>
+                                    <label class="col-form-label ml-2 mr-4  ">{{$o_drugs -> start_side_effect}}  </label>
+                                </div>
+                                <div class="form-group raw mt-4  border-bottom " style="display: flex; flex-wrap: wrap; ">
+                                    <label class="col-form-label Text  ml-3 mr-4 ">مدى خطورته : </label>
+                                    <label class="col-form-label ml-2 mr-4  ">{{$o_drugs -> severity}}  </label>
+                                </div>
+                                <div class="form-group raw mt-4  border-bottom " style="display: flex; flex-wrap: wrap; ">
+                                    <label class="col-form-label Text  ml-3 mr-4 ">هل زال العرض : </label>
+                                    <label class="col-form-label ml-2 mr-4  ">{{$o_drugs -> sideshow_still}}  </label>
+                                    <label class="col-form-label Text ml-3 mr-4 ">التاريخ : </label>
+                                    <label class="col-form-label  ml-2 mr-4  ">{{$o_drugs -> date_end_side}}  </label>
+                                </div>
+                                <div class="form-group raw mt-4  border-bottom " style="display: flex; flex-wrap: wrap; ">
+                                    <label class="col-form-label Text  ml-3 mr-4 ">حالة المريض حاليا : </label>
+                                    <label class="col-form-label ml-2 mr-4  ">{{$o_drugs -> patient_condition}}  </label>
+                                </div>
+                            @endforeach
+                        @endif
+                    </form>
+                </div>
+            </div>
+
+            {{--//////////////////////////////////////////////////////--}}
+            {{--                       معلومات اخرى                   --}}
+            {{--//////////////////////////////////////////////////////--}}
+            <div class="card shadow mb-0 pb-0" >
+                <div class="card-header " style="background-color: #F9F9F9;">
+                    <div class="row m-2 ">
+                        <h4>معلومات اخرى</h4>
+                    </div>
+                </div>
+                <div class="card-body position-relative mb-0 pb-0" style="background-color: #F9F9F9;">
+                    <form>
+                        @if(isset($o_drug))
+                            @foreach($o_drug as $o_drugs)
+                                <div class="form-group raw mt-2 " style="display: flex; flex-wrap: wrap;  ">
+                                    <label class="col-form-label Text ml-3 mr-4 ">هل تم ابلاغ الطبيب بهذه الاعراض : </label>
+                                    <label class="col-form-label  ml-2 mr-4  ">{{$o_drugs -> inform_doctor}}  </label>
+                                </div>
+                                <div class="form-group raw mt-4  border-bottom " style="display: flex; flex-wrap: wrap; ">
+                                    <label class="col-form-label Text ml-5 mr-4 ">اسم الطبيب : </label>
+                                    <label class="col-form-label  ml-2 mr-4  ">{{$o_drugs -> doctor_name}}  </label>
+                                    <label class="col-form-label Text  ml-3 mr-4 ">الهاتف : </label>
+                                    <label class="col-form-label ml-2 mr-4  ">{{$o_drugs -> doctor_phone}}  </label>
+                                    <label class="col-form-label Text ml-5 mr-4 ">المستشفى : </label>
+                                    <label class="col-form-label  ml-2 mr-4  ">{{$o_drugs -> doctor_hospital}}  </label>
+                                </div>
+                            @endforeach
+                        @endif
+                    </form>
+                </div>
+            </div>
+
+                    @endif
+                @endforeach
+            @endif
         {{--End Content--}}
 
     </main>

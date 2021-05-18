@@ -158,7 +158,6 @@ Route::group(['namespace'=>'pharmacovigilanceManagement'],function (){
 
     ///////////////////Follow///////////////
     Route::get('/PHC_followedUp/{id}','PHCManageController@followedUp')->name('PHC_followedUp');
-    Route::get('/PHC_followedUp2/{id}','PHCManageController@followedUp2')->name('PHC_followedUp2');
     Route::get('/PHC_createProcedure/{id}', 'PHCManageController@createProcedure')->name('PHC_createProcedure');
     Route::post('/PHC_store/{id}', 'PHCManageController@store')->name('PHC_store');
 

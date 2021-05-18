@@ -277,8 +277,8 @@ class PHCManageController extends Controller
     public function store($id,Request $request)
     {
 //        $reports = DB::table('report_alert_drugs')->find($id);
-        Report_alert_drug::select('report_alert_drugs.id as report_no')
-            ->where('report_alert_drugs.id as report_no', '=', $id)
+        DB::table('report_alert_drugs')->select('report_alert_drugs.id as report_no')
+            ->where('report_alert_drugs.id', '=', $id)
             ->update(['notes' => $request->notes,
                 'state'=>2 ]);
         return redirect()->route('PHC_followedUp',$id);

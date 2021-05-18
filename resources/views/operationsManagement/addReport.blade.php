@@ -31,24 +31,9 @@
 
                         <br>
                         {{--//////////////////////////////////////////////////////--}}
-                        {{--                    التحقق من الرقم                   --}}
+                        {{--                    البيانات المطلوبه                   --}}
                         {{--//////////////////////////////////////////////////////--}}
-                        <form action="{{route('OP_selectBNumber')}}" method="GET">
-                            <div class="row ">
-                                <div class="form-group raw mt-4 mr-3" style="display: flex; flex-wrap: wrap; margin-left: -12px; margin-right: -12px;">
-                                    <label class="col-form-label  text-sm-right mt-2">  رقم التشغيلة : </label>
-                                    <div class="mt-2  ml-4">
-                                        <input type="text" class="form-control" placeholder="رقم التشغيلة  " name="batch_num" id="batch_num">
-                                    </div>
-                                </div>
-                                <div class="form-group raw mt-4 " style="display: flex; flex-wrap: wrap; margin-left: -12px; margin-right: -12px;">
-                                    <button id="query" class="btn btn-primary " type="submit" style="color: white;background-color: #0F122D;
-                                                            ">
-                                        تحقق
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
+
                         @if (isset($drug) && $drug->isEmpty())
                             <form method="POST" action="{{route('OP_store')}}">
                             @csrf

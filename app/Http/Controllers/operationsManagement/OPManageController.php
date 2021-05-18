@@ -115,7 +115,7 @@ class OPManageController extends Controller
 
     //////////////// [ Add report .. إضافة بلاغ ]  ////////////////
     public function addReport(){
-        return view('operationsManagement.addReport');
+        return view('operationsManagement.checkBNumber');
     }
     public function selectBNumber(Request $request){
         $batch_no = $request->input('batch_num');
@@ -155,6 +155,11 @@ class OPManageController extends Controller
             'source'=>'1',
             'report_statuses'=>'محول للمتابعة'
         ]);
+        $data =[
+            'id' => 'aa',
+            'state' =>'g' ,
+        ];
+        event(new NewNotification($data));
         return redirect()->back()->with(['success' => 'تم اضافه البلاغ بنجاح ']);
     }
 

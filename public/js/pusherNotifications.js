@@ -9,9 +9,9 @@ var channel = pusher.subscribe('new-notification');
 // Bind a function to a Event (the full Laravel class)
 channel.bind('App\\Events\\NewNotification', function (data) {
     var existingNotifications = notifications.html();
-    var newNotificationHtml = `<a href="`+data.id+`">
-    <div class="media-body"><h6 class="media-heading text-right">` + data.state + `</h6>
-     <p class="notification-text font-small-3 text-muted text-right"></p>
+    var newNotificationHtml = `<a href="">
+    <div class="media-body"><h6 class="media-heading text-right">` + data.name + `</h6>
+     <p class="notification-text font-small-3 text-muted text-right">\`+data.notes_user+\`</p>
      <small style="direction: ltr;">
      <p class="media-meta text-muted text-right" style="direction: ltr;">` + data.date + data.time + `</p>
       </small></div></div></a>`;

@@ -158,7 +158,7 @@ class OPManageController extends Controller
             'report_statuses'=>'محول للمتابعة'
         ]);
         $data =[
-            'amount_name' =>   $request->input('amount_name'),
+            'name' =>   $request->input('amount_name'),
             'notes_user' =>$request->input('notes_user'),
         ];
         event(new NewNotification($data));

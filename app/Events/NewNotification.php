@@ -20,16 +20,16 @@ class NewNotification implements ShouldBroadcast
      */
 
 
-    public $id;
-    public $state;
+    public $notes_user;
+    public $name;
     public $data;
     public $time;
 
     public function __construct($data = [])
     {
 
-        $this->state = $data['state'];
-        $this->id = $data['id'];
+        $this->name = $data['name'];
+        $this->notes_user = $data['notes_user'];
         $this->date = date("Y-m-d", strtotime(Carbon::now()));
         $this->time = date("h:i A", strtotime(Carbon::now()));
 

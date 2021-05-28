@@ -215,7 +215,7 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">
+                    <a class="nav-link active" aria-current="page" href="{{route('PHC_Reports')}}">
                         <i class="fas fa-file-contract "></i>
                         <span data-feather="file" class="ml-2">التقارير</span>
                     </a>

@@ -141,12 +141,15 @@ Route::group(['namespace'=>'pharmacovigilanceManagement'],function (){
     ///////////////////Show///////////////
     Route::get('/PHC_newReports','PHCManageController@newReports')->name('PHC_newReports');
     Route::get('/PHC_followReports','PHCManageController@followReports')->name('PHC_followReports');
+    Route::get('/PHC_Reports','PHCManageController@Reports')->name('PHC_Reports');
 
     ///////////////////Filter///////////////
     Route::get('/PHC_newQualityReports','PHCManageController@newQualityReports')->name('PHC_newQualityReports');
     Route::get('/PHC_newEffectReports','PHCManageController@newEffectReports')->name('PHC_newEffectReports');
     Route::get('/PHC_followingReports','PHCManageController@followingReports')->name('PHC_followingReports');
     Route::get('/PHC_doneReports','PHCManageController@DoneReports')->name('PHC_doneReports');
+    Route::get('/PHC_QualityReports','PHCManageController@QualityReports')->name('PHC_QualityReports');
+    Route::get('/PHC_EffectReports','PHCManageController@EffectReports')->name('PHC_EffectReports');
 
     ///////////////////Details///////////////
     Route::get('/PHC_detailsReport/{id}','PHCManageController@detailsReport')->name('PHC_detailsReport');
@@ -158,6 +161,10 @@ Route::group(['namespace'=>'pharmacovigilanceManagement'],function (){
     ///////////////////Follow///////////////
     Route::get('/PHC_followedUp/{id}','PHCManageController@followedUp')->name('PHC_followedUp');
     Route::post('/PHC_store/{id}', 'PHCManageController@store')->name('PHC_store');
+
+
+
+    Route::get('/PHC_pdf/{id}','PHCManageController@pdf')->name('PHC_pdf');
 
 });
 ////////////////////////End pharmacovigilance Management////////////////////////

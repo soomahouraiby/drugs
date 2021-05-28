@@ -12,6 +12,10 @@
             <h1 class="h2   ml-2 mt-2 mb-2">تفاصيل بلاغ وارد</h1>
             @if(isset($report))
                 @foreach($report as $reports)
+            <button class="btn btn-sm bg-light"  style="background-color: #e7e9ec ; color: #0F122D; " >
+                <a href="{{route('PHC_pdf',$reports -> report_no)}}">تصدير pdf</a>
+            </button>
+
                     @if($reports->state==0)
                         <div class="dropdown  ml-5" >
                             <button class="btn " type="submit" style=" width: 90%; background-color: #1b225a; color:#ffffff">

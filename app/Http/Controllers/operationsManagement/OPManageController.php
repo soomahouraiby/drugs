@@ -80,9 +80,6 @@ class OPManageController extends Controller
         return view('operationsManagement.followReports',compact('reports'));
     }
 
-
-
-
     //////////////// [ Transfer .. تحويل البلاغ الوارد ]  ////////////////
     public function transferReports($report_no,Request $request)
     {
@@ -350,17 +347,6 @@ class OPManageController extends Controller
             ->where('types_reports.name','!=','جودة')
             ->get();
 
-//        $reports2 = DB::table('reports')
-//            ->join('types_reports', 'reports.type_report_no', '=', 'types_reports.type_report_no')
-//            ->select('reports.report_no','reports.authors_name',
-//                'reports.report_date', 'reports.transfer_date','reports.transfer_party',
-//                'reports.report_statues' , 'types_reports.type_report')
-//            ->where('app_user_no','=',null)
-//            ->where('report_statues','!=',null)
-//            ->where('transfer_party','!=',null)
-//            ->where('type_report','!=','اعراض جانبية')
-//            ->where('type_report','!=','جودة')
-//            ->get();
 
         return view('operationsManagement.followReports',compact('reports'));
     }
@@ -380,18 +366,6 @@ class OPManageController extends Controller
             ->where('types_reports.name','!=','جودة')
             ->get();
 
-//        $reports2 = DB::table('reports')
-//            ->join('types_reports', 'reports.type_report_no', '=', 'types_reports.type_report_no')
-//            ->select('reports.report_no','reports.authors_name',
-//                'reports.report_date', 'reports.transfer_date','reports.transfer_party',
-//                'reports.report_statues' , 'types_reports.type_report')
-//            ->where('app_user_no','=',null)
-//            ->where('report_statues','!=',null)
-//            ->where('transfer_party','!=',null)
-//            ->where('type_report','!=','اعراض جانبية')
-//            ->where('type_report','!=','جودة')
-//            ->get();
-
         return view('operationsManagement.followReports',compact('reports'));
     }
 
@@ -410,17 +384,6 @@ class OPManageController extends Controller
             ->where('types_reports.name','!=','جودة')
             ->get();
 
-//        $reports2 = DB::table('reports')
-//            ->join('types_reports', 'reports.type_report_no', '=', 'types_reports.type_report_no')
-//            ->select('reports.report_no','reports.authors_name',
-//                'reports.report_date', 'reports.transfer_date','reports.transfer_party',
-//                'reports.report_statues' , 'types_reports.type_report')
-//            ->where('app_user_no','=',null)
-//            ->where('report_statues','!=',null)
-//            ->where('transfer_party','!=',null)
-//            ->where('type_report','!=','اعراض جانبية')
-//            ->where('type_report','!=','جودة')
-//            ->get();
 
         return view('operationsManagement.followReports',compact('reports'));
     }

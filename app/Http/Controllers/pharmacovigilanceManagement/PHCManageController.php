@@ -272,37 +272,14 @@ class PHCManageController extends Controller
 //عشان اضافة اجراء على البلاغ
     public function store($id,Request $request)
     {
-//        $reports = DB::table('report_alert_drugs')->find($id);
         DB::table('report_alert_drugs')->select('report_alert_drugs.id as report_no')
             ->where('report_alert_drugs.id', '=', $id)
             ->update(['notes' => $request->notes,
                 'state'=>2 ]);
         return redirect()->route('PHC_followedUp',$id);
 
-//        $reports = DB::table('report_alert_drugs')
-//            ->join('types_reports', 'report_alert_drugs.types_report_id', '=', 'types_reports.id')
-//            ->join('app_users', 'report_alert_drugs.app_user_id', '=', 'app_users.id')
-//            ->select('report_alert_drugs.id as report_no','app_users.name'
-//                , 'report_alert_drugs.state','report_alert_drugs.date_report',
-//                'types_reports.name as type_report')
-//            ->where('report_alert_drugs.state','!=',null)
-//            ->where('types_reports.name','!=','مهرب')
-//            ->where('types_reports.name','!=','مسحوب')
-//            ->where('types_reports.name','!=','غير مطابق')
-//            ->where('types_reports.name','!=','مستثناء')
-//            ->get();
-//        if (isset($reports) && $reports->count() > 0) {
-//            foreach ($reports as $report) {
-//
-//                $report->state = $report->state == 1 ? ' تم الانهاء' : 'قيد المتابعة';
-//            }
-//        }
-//
-//        return view('pharmacovigilanceManagement.followReports',compact('reports'))
-//            ->with(['success'=> 'تم الانهاء بنجاح ']);
+
 
     }
-
-
 
 }

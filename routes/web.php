@@ -100,6 +100,7 @@ Route::group(['namespace'=>'operationsManagement'],function (){
     ///////////////////Show///////////////
     Route::get('/OP_newReports','OPManageController@newReports')->name('OP_newReports');
     Route::get('/OP_followReports','OPManageController@followReports')->name('OP_followReports');
+    Route::get('/OP_Reports','OPManageController@Reports')->name('OP_Reports');
 
     ///////////////////Filter///////////////
     Route::get('/OP_newSmuggledReports','OPManageController@newSmuggledReports')->name('OP_newSmuggledReports');
@@ -110,6 +111,10 @@ Route::group(['namespace'=>'operationsManagement'],function (){
     Route::get('/OP_followingReports','OPManageController@followingReports')->name('OP_followingReports');
     Route::get('/OP_followDoneReports','OPManageController@followDoneReports')->name('OP_followDoneReports');
     Route::get('/OP_doneReports','OPManageController@DoneReports')->name('OP_doneReports');
+    Route::get('/OP_SmuggledReports','OPManageController@SmuggledReports')->name('OP_SmuggledReports');
+    Route::get('/OP_DrownReports','OPManageController@DrownReports')->name('OP_DrownReports');
+    Route::get('/OP_DiffrentReports','OPManageController@DiffrentReports')->name('OP_DiffrentReports');
+    Route::get('/OP_ExceptionReports','OPManageController@ExceptionReports')->name('OP_ExceptionReports');
 
     ///////////////////Details///////////////
     Route::get('/OP_detailsReport/{id}','OPManageController@detailsReport')->name('OP_detailsReport');
@@ -129,6 +134,12 @@ Route::group(['namespace'=>'operationsManagement'],function (){
     Route::get('/OP_selectBNumber','OPManageController@selectBNumber')->name('OP_selectBNumber');
     Route::get('/OP_addReport','OPManageController@addReport')->name('OP_addReport');
     Route::post('OP_store', 'OPManageController@store')->name('OP_store');
+
+
+
+
+    Route::get('/OP_pdf/{id}','OPManageController@pdf')->name('OP_pdf');
+
 });
 ////////////////////////operations Management////////////////////////
 

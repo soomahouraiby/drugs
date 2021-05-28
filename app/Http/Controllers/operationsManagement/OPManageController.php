@@ -20,6 +20,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use function PHPUnit\Framework\isEmpty;
 use function PHPUnit\Framework\isNull;
+use PDF;
 
 class OPManageController extends Controller
 {
@@ -182,7 +183,7 @@ class OPManageController extends Controller
                 'reports.drug_price','reports.commercial_name','reports.company_name','reports.agent_name',
                 'reports.site_dec','reports.neig_name','reports.pharmacy_title','reports.street_name',
                 'app_users.name as name_user', 'app_users.phone as phone_user', 'app_users.adjective'
-                , 'app_users.age','app_users.report_count','reports.report_statuses',
+                , 'app_users.age','reports.report_statuses',
                 'types_reports.name as type_report')
             ->where('reports.id', '=', $id)->get();
 
@@ -404,5 +405,188 @@ class OPManageController extends Controller
             ->get();
         return view('operationsManagement.followReports',compact('reports'));
     }
+
+
+    //عشان عرض البلاغات للتقارير
+    public function Reports()
+    {
+        $reports = DB::table('reports')
+            ->join('types_reports', 'reports.types_report_id', '=', 'types_reports.id')
+            ->join('app_users', 'reports.app_user_id', '=', 'app_users.id')
+            ->select('reports.id','app_users.name as name_user'
+                , 'reports.date', 'types_reports.name as type_report')
+
+            ->where('types_reports.name','!=','اعراض جانبية')
+            //->where('state','=',0)
+            ->where('types_reports.name','!=','جودة')
+            ->get();
+        return view('operationsManagement.Reports', compact('reports'));
+    }
+
+    public function SmuggledReports()
+    {
+        $reports = DB::table('reports')
+            ->join('types_reports', 'reports.types_report_id', '=', 'types_reports.id')
+            ->join('app_users', 'reports.app_user_id', '=', 'app_users.id')
+            ->select('reports.id','app_users.name as name_user'
+                , 'reports.date', 'types_reports.name as type_report')
+
+            //->where('types_reports.name','=','مهرب')
+            ->where('state','=',0)
+            ->get();
+
+        return view('operationsManagement.Reports', compact('reports'));
+    }
+
+    //////////////// [ Filter .. البلاغات المسحوبة ]  ////////////////
+    public function DrownReports()
+    {
+        $reports = DB::table('reports')
+            ->join('types_reports', 'reports.types_report_id', '=', 'types_reports.id')
+            ->join('app_users', 'reports.app_user_id', '=', 'app_users.id')
+            ->select('reports.id','app_users.name as name_user'
+                , 'reports.date', 'types_reports.name as type_report')
+
+            //->where('state','=',0)
+            ->where('types_reports.name','=','مسحوب')
+            ->get();
+        return view('operationsManagement.Reports', compact('reports'));
+    }
+
+    //////////////// [ Filter .. البلاغات الغير مطابقة ]  ////////////////
+    public function DiffrentReports()
+    {
+        $reports = DB::table('reports')
+            ->join('types_reports', 'reports.types_report_id', '=', 'types_reports.id')
+            ->join('app_users', 'reports.app_user_id', '=', 'app_users.id')
+            ->select('reports.id','app_users.name as name_user'
+                , 'reports.date', 'types_reports.name as type_report')
+
+            //->where('state','=',0)
+            ->where('types_reports.name','=','غير مطابق')
+            ->get();
+
+        return view('operationsManagement.Reports', compact('reports'));
+    }
+
+    //////////////// [ Filter .. البلاغات المستثناه ]  ////////////////
+    public function ExceptionReports()
+    {
+        $reports = DB::table('reports')
+            ->join('types_reports', 'reports.types_report_id', '=', 'types_reports.id')
+            ->join('app_users', 'reports.app_user_id', '=', 'app_users.id')
+            ->select('reports.id','app_users.name as name_user'
+                , 'reports.date', 'types_reports.name as type_report')
+
+           // ->where('state','=',0)
+            ->where('types_reports.name','=','مستثناء')
+            ->get();
+
+        return view('operationsManagement.Reports', compact('reports'));
+    }
+//    public function pdf(){
+//        $reports = DB::table('report_alert_drugs')
+//            ->join('types_reports', 'report_alert_drugs.types_report_id', '=', 'types_reports.id')
+//            ->join('app_users', 'report_alert_drugs.app_user_id', '=', 'app_users.id')
+//            ->select('report_alert_drugs.id as report_no','app_users.name'
+//                , 'report_alert_drugs.user_name','report_alert_drugs.date_report', 'types_reports.name as type_report')
+//            //->where('report_alert_drugs.state','=',0)
+//            ->where('types_reports.name','=','جودة')
+//            ->get();
+//
+//        foreach($reports as $report) {
+//            $data ['report_no'] = $report->report_no;
+//            $data ['name'] = $report->name;
+//            $data ['user_name'] = $report->user_name;
+//            $data ['date_report'] = $report->date_report;
+//            $data ['type_report'] = $report->type_report;
+//        }
+//
+//
+//        $pdf = PDF::loadView('pharmacovigilanceManagement.pdf', $data);
+//        return $pdf->stream('document.pdf');
+//
+//        //return view('pharmacovigilanceManagement.pdf' ,compact('reports'));
+//    }
+
+    public function pdf($id){
+        $report = DB::table('reports')->select('reports.id')
+            ->where('id','=', $id)->get();
+        if (!$report)
+            return redirect()->back();
+
+        $reports = DB::table('reports')
+            ->join('types_reports', 'reports.types_report_id', '=', 'types_reports.id')
+            ->join('app_users', 'reports.app_user_id', '=', 'app_users.id')
+
+            ->select('reports.id','reports.state','reports.drug_photo','reports.notes_user', 'reports.date',
+                'reports.drug_price','reports.commercial_name','reports.company_name','reports.agent_name',
+                'reports.site_dec','reports.neig_name','reports.pharmacy_title','reports.street_name',
+                'app_users.name as name_user', 'app_users.phone as phone_user', 'app_users.adjective'
+                , 'app_users.age','reports.report_statuses',
+                'types_reports.name as type_report')
+            ->where('reports.id', '=', $id)->get();
+
+        $batches = DB::table('reports')->select('reports.batch_number')
+            ->where('reports.id', '=', $id)->get();
+
+        foreach ($batches as $batch) {
+
+            $drug = DB::table('batch_numbers')
+                ->join('commercial_drugs', 'batch_numbers.commercial_id', '=', 'commercial_drugs.id')
+                ->join('combinations', 'combinations.commercial_id', '=','commercial_drugs.id')
+                ->join('effective_materials', 'combinations.material_id', '=', 'effective_materials.id')
+                ->join('companies', 'commercial_drugs.company_id', '=', 'companies.id')
+                ->join('shipments', 'batch_numbers.shipment_id', '=', 'shipments.id')
+
+                ->select('batch_numbers.batch_num','commercial_drugs.id', 'commercial_drugs.name as drug_name',
+                    'commercial_drugs.drug_form','commercial_drugs.how_use','commercial_drugs.side_effects'
+                    ,'effective_materials.name as material_name','shipments.exception','shipments.type','batch_numbers.drug_drawn',
+                    'companies.name as company_name')
+                ->where('batch_numbers.batch_num','=', $batch->batch_number)->get();
+        }
+
+
+        foreach($reports as $report) {
+            $data ['id'] = $report->id;
+            $data ['state'] = $report->state;
+            $data ['drug_photo'] = $report->drug_photo;
+            $data ['notes_user'] = $report->notes_user;
+            $data ['date'] = $report->date;
+            $data ['drug_price'] = $report->drug_price;
+            $data ['commercial_name'] = $report->commercial_name;
+            $data ['company_name'] = $report->company_name;
+            $data ['agent_name'] = $report->agent_name;
+            $data ['site_dec'] = $report->site_dec;
+            $data ['neig_name'] = $report->neig_name;
+            $data ['pharmacy_title'] = $report->pharmacy_title;
+            $data ['street_name'] = $report->street_name;
+            $data ['name_user'] = $report->name_user;
+            $data ['phone_user'] = $report->phone_user;
+            $data ['adjective'] = $report->adjective;
+            $data ['age'] = $report->age;
+            $data ['report_statuses'] = $report->report_statuses;
+            $data ['type_report'] = $report->type_report;
+        }
+        foreach($drug as $drugs) {
+            $data ['batch_num'] = $drugs->batch_num;
+            $data ['id'] = $drugs->id;
+            $data ['drug_name'] = $drugs->drug_name;
+            $data ['drug_form'] = $drugs->drug_form;
+            $data ['how_use'] = $drugs->how_use;
+            $data ['side_effects'] = $drugs->side_effects;
+            $data ['material_name'] = $drugs->material_name;
+            $data ['exception'] = $drugs->exception;
+            $data ['type'] = $drugs->type;
+            $data ['drug_drawn'] = $drugs->drug_drawn;
+            $data ['company_name'] = $drugs->company_name;
+       }
+
+
+
+        $pdf = PDF::loadView('operationsManagement.pdf', $data);
+        return $pdf->stream('document.pdf');
+    }
+
 
 }

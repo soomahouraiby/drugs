@@ -264,4 +264,6 @@ class SearchController extends Controller
         }
          return   $reservations;
     }
+
+
 }

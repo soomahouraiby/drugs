@@ -6,6 +6,9 @@
             <h1 class="h2   ml-2 mt-2 mb-2">تفاصيل بلاغ وارد</h1>
             @if(isset($reports))
                 @foreach($reports as $report)
+                    <button class="btn btn-sm bg-light"  style="background-color: #e7e9ec ; color: #0F122D; " >
+                                            <a href="{{route('OP_pdf',$report -> id)}}">تصدير pdf</a>
+                                        </button>
                     @if($report->state==0)
                          <div class="dropdown">
                             <button type="button" class="btn btn-sm  dropdown-toggle mr-4 ml-4 button" data-toggle="dropdown" id="btn">
